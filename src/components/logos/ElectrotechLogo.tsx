@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 export default function ElectrotechLogo({ color = "currentColor" }) {
   return (
-    <div className="mr-auto flex gap-1">
+    <Link to={"/"} className="mr-auto flex gap-1">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -15,6 +17,6 @@ export default function ElectrotechLogo({ color = "currentColor" }) {
         <path d="M12 9.99999V5.99999L8.00002 14H12V18L16 9.99999H12Z" />
       </svg>
       <h2>Electrotech</h2>
-    </div>
+    </Link>
   );
 }
