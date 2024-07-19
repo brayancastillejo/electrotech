@@ -9,8 +9,6 @@ export default function CloseIcon({
   style,
   setDisplay,
 }: CloseIconProps) {
-  console.log(setDisplay + "CloseIcon");
-
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +16,7 @@ export default function CloseIcon({
       viewBox="0 -960 960 960"
       width="24px"
       fill={color}
-      className={`md:hidden ${style}`}
+      className={`cursor-pointer md:hidden ${style}`}
       onClick={() => {
         setDisplay(false);
       }}

@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
 
-export default function ElectrotechLogo({ color = "currentColor" }) {
+interface ElectrotechLogoProps {
+  color?: string;
+  style?: string;
+}
+
+export default function ElectrotechLogo({
+  color = "currentColor",
+  style,
+}: ElectrotechLogoProps) {
   return (
-    <Link to={"/"} className="mr-auto flex gap-1">
+    <Link to={"/"} className={`flex items-center gap-1 ${style}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
