@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/Root.tsx";
 import ErrorPage from "./ErrorPage.tsx";
+import Admin from "./routes/Admin.tsx";
 import Login from "./components/Login.tsx";
 import Register from "./components/Register.tsx";
 import "./index.css";
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/admin",
+        element: <Admin />,
+      },
       {
         path: "/phones",
         element: <h1>Phones</h1>,

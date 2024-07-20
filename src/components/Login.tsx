@@ -5,7 +5,6 @@ import { loginDTO } from "../interfaces/loginDTO";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-
   // router-dom
 
   const navigate = useNavigate();
@@ -20,27 +19,22 @@ export default function Login() {
 
   const { register, handleSubmit } = useForm();
 
-
   // function - OnSubmit
 
-  const onSubmit = handleSubmit(async data => {
-
+  const onSubmit = handleSubmit(async (data) => {
     try {
+      const form: loginDTO = {
+        email: data.email,
+        password: data.password,
+      };
 
-    const form: loginDTO = {
-      email: data.email,
-      password: data.password
-    }
+      const response = await login(form);
 
-    const response = await login(form);
-
-    if(response){
-      localStorage.setItem("token", response.accessToken);
-      navigate("/")
-    }
-
-    }catch(error){
-      
+      if (response) {
+        localStorage.setItem("token", response.accessToken);
+        navigate("/");
+      }
+    } catch (error) {
       if (typeof error === "object" && error !== null && "response" in error) {
         const err = error as { response: { status: number } };
         if (err.response.status === 401) {
@@ -52,18 +46,15 @@ export default function Login() {
       } else {
         console.error("Unexpected error:", error);
       }
-
     }
-
-  })
-
+  });
 
   return (
     <form
       onSubmit={onSubmit}
       action=""
       method="post"
-      className="bg-neutral-200 flex flex-col gap-4 rounded-lg p-4"
+      className="flex flex-col gap-4 rounded-lg bg-neutral-200 p-4"
     >
       <div className="flex flex-col">
         <label htmlFor="email">Email: </label>
@@ -71,7 +62,7 @@ export default function Login() {
           type="email"
           id="email"
           placeholder="daniel@gmail.com"
-          className="bg-neutral-300 w-64 rounded-md px-2 py-1 md:w-80"
+          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80"
           {...register("email", { required: true })}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -83,28 +74,25 @@ export default function Login() {
           type="password"
           id="password"
           placeholder="••••••••"
-          className="bg-neutral-300 w-64 rounded-md px-2 py-1 md:w-80"
+          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80"
           {...register("password", { required: true })}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
-      {error && 
-      <div>
-        <p className="text-red-500 font-semibold text-center">{error}</p>
-      </div>
-      }
-
+      {error && (
+        <div>
+          <p className="text-center font-semibold text-red-500">{error}</p>
+        </div>
+      )}
 
       <button
         type="submit"
-        className="bg-primary text-white mt-6 w-64 rounded-md px-2 py-1 md:w-80"
+        className="mt-6 w-64 rounded-md bg-primary px-2 py-1 text-white md:w-80"
       >
         Login
       </button>
-
-
     </form>
   );
 }
