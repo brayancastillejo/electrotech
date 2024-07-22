@@ -1,1 +1,1 @@
-export const items = ["admin","phones", "computers", "home", "videogames"];
+export const items = ["admin", "phones", "computers", "home", "videogames"];

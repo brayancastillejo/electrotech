@@ -34,9 +34,9 @@ export default function Login() {
       if (response) {
         localStorage.setItem("token", response.accessToken);
 
-        const role = await getRole()
+        const role = await getRole();
 
-        if(role == "admin"){
+        if (role == "admin") {
           navigate("/admin");
           return;
         }

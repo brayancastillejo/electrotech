@@ -5,34 +5,29 @@ import ElectrotechLogo from "./logos/ElectrotechLogo";
 import { getRole } from "../utils/auth";
 import { useEffect, useState } from "react";
 
-
 interface NavbarProps {
   display: boolean;
   setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function Navbar({ display, setDisplay }: NavbarProps) {
-
   const [navItems, setNavItems] = useState<string[]>(items);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useEffect(() => {
-    
     const fetchRole = async () => {
       const role = await getRole();
 
       if (role != "admin") {
-        const filteredItems = items.filter(item => item !== "admin");
+        const filteredItems = items.filter((item) => item !== "admin");
         setNavItems(filteredItems);
         setIsLoaded(true);
-      }
-      else {
+      } else {
         setIsLoaded(true);
       }
-    }
+    };
     fetchRole();
-
-  },[])
+  }, []);
 
   return (
     <nav
@@ -41,20 +36,19 @@ export default function Navbar({ display, setDisplay }: NavbarProps) {
       <CloseIcon style={"absolute right-4"} setDisplay={setDisplay} />
       <ElectrotechLogo style="md:hidden mb-8 text-lg" />
       <ul className="flex flex-col gap-4 md:flex-row md:gap-2">
-        
-        {isLoaded && navItems.map((item) => (
-          <li key={crypto.randomUUID()}>
-            <NavLink
-              to={`/${item}`}
-              className={({ isActive }) =>
-                `rounded-md px-2 py-1 ${isActive ? "bg-neutral-200 md:bg-darker-primary" : ""}`
-              }
-            >
-              {item[0].toUpperCase() + item.slice(1)}
-            </NavLink>
-          </li>
-        ))}
-        
+        {isLoaded &&
+          navItems.map((item) => (
+            <li key={crypto.randomUUID()}>
+              <NavLink
+                to={`/${item}`}
+                className={({ isActive }) =>
+                  `rounded-md px-2 py-1 ${isActive ? "bg-neutral-200 md:bg-darker-primary" : ""}`
+                }
+              >
+                {item[0].toUpperCase() + item.slice(1)}
+              </NavLink>
+            </li>
+          ))}
       </ul>
     </nav>
   );

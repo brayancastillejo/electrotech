@@ -1,3 +1,3 @@
 export interface tokenDTO {
-    isValid: boolean;
+  isValid: boolean;
 }

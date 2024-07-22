@@ -1,36 +1,33 @@
 import { jwtDecode, JwtPayload } from "jwt-decode";
 import { validateToken } from "../api/auth";
 
-export const saveToken = (token:string) => {
-    localStorage.setItem("token", token);
-}
+export const saveToken = (token: string) => {
+  localStorage.setItem("token", token);
+};
 
 export const getToken = () => {
-    return localStorage.getItem("token");
-}
+  return localStorage.getItem("token");
+};
 
 const isValidToken = async () => {
-    const data = await validateToken();
-    return data.isValid;
-}
+  const data = await validateToken();
+  return data.isValid;
+};
 
 interface TokenPayload extends JwtPayload {
-    roles: string;
+  roles: string;
 }
 
 export const getRole = async () => {
+  const token = getToken();
 
-    const token = getToken();
+  if (!token) return null;
 
-    if (!token) return null;
+  const isValid = await isValidToken();
 
-    const isValid = await isValidToken()
+  if (!isValid) return null;
 
-    if (!isValid) return null;
+  const decoded = jwtDecode<TokenPayload>(token);
 
-    const decoded = jwtDecode<TokenPayload>(token);
-
-    return decoded.roles;
-        
-
-}
+  return decoded.roles;
+};
