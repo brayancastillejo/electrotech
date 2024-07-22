@@ -7,6 +7,7 @@ import Admin from "./routes/Admin.tsx";
 import Login from "./components/Login.tsx";
 import Register from "./components/Register.tsx";
 import "./index.css";
+import { ProtectedRoute } from "./components/auth/ProtectedRoute.tsx";
 
 const router = createBrowserRouter([
   {
@@ -14,10 +15,6 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: "/admin",
-        element: <Admin />,
-      },
       {
         path: "/phones",
         element: <h1>Phones</h1>,
@@ -34,6 +31,10 @@ const router = createBrowserRouter([
         path: "/videogames",
         element: <h1>Videogames</h1>,
       },
+      {
+        path: "/admin",
+        element: <ProtectedRoute component={Admin} requiredRole="admin" />,  
+      }
     ],
   },
   {
