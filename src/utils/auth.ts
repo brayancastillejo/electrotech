@@ -18,21 +18,19 @@ interface TokenPayload extends JwtPayload {
     roles: string;
 }
 
-export const getRole = () => {
+export const getRole = async () => {
 
     const token = getToken();
 
     if (!token) return null;
 
-    
-    isValidToken().then(isValid => {
+    const isValid = await isValidToken()
 
-        if (!isValid) return null;
+    if (!isValid) return null;
 
-        const decoded = jwtDecode<TokenPayload>(token);
+    const decoded = jwtDecode<TokenPayload>(token);
 
-        return decoded.roles;
+    return decoded.roles;
         
-    }) 
 
 }

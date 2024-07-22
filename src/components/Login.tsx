@@ -3,6 +3,7 @@ import { login } from "../api/auth";
 import { useState } from "react";
 import { loginDTO } from "../interfaces/loginDTO";
 import { useNavigate } from "react-router-dom";
+import { getRole } from "../utils/auth";
 
 export default function Login() {
   // router-dom
@@ -32,6 +33,14 @@ export default function Login() {
 
       if (response) {
         localStorage.setItem("token", response.accessToken);
+
+        const role = await getRole()
+
+        if(role == "admin"){
+          navigate("/admin");
+          return;
+        }
+
         navigate("/");
       }
     } catch (error) {
