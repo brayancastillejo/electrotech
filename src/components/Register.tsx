@@ -106,7 +106,7 @@ export default function Register() {
         <label htmlFor="confirm-password">Confirm password: </label>
         <input
           type="password"
-          id="confirmpassword"
+          id="confirm-password"
           placeholder="••••••••"
           className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80"
           {...register("confirmpassword", { required: true })}
