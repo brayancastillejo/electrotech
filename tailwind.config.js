@@ -6,6 +6,8 @@ export default {
       colors: {
         primary: "#045FCA",
         "darker-primary": "#034796",
+        danger: "#f00",
+        "darker-danger": "#a00",
       },
     },
   },
