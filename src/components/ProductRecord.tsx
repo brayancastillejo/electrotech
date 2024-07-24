@@ -6,9 +6,10 @@ import ProductDialog from "./ProductDialog";
 
 interface ProductRecordProps {
   product: displayProductDTO;
+  update: (product: displayProductDTO) => void;
 }
 
-export default function ProductRecord({ product }: ProductRecordProps) {
+export default function ProductRecord({ product, update }: ProductRecordProps) {
   const [showDialog, setShowDialog] = useState<boolean>(false);
 
   const toggleDialog = () => {
@@ -27,6 +28,7 @@ export default function ProductRecord({ product }: ProductRecordProps) {
         }}
         isEditing={true}
         product={product}
+        update={update}
       />
       <DeleteIcon color="red" productId={product._id}/>
     </div>

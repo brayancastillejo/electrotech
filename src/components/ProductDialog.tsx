@@ -10,6 +10,7 @@ interface ProductDialogProps {
   closeDialog: () => void;
   isEditing: boolean;
   product?: displayProductDTO;
+  update?: (product: displayProductDTO) => void;
 }
 
 export default function ProductDialog({
@@ -17,6 +18,7 @@ export default function ProductDialog({
   closeDialog,
   isEditing,
   product,
+  update,
 }: ProductDialogProps) {
   const [name, setName] = useState<string>(isEditing && product ? product.name || '' : "");
   const [brand, setBrand] = useState<string>(isEditing && product ? product.brand || '' : "");
@@ -37,7 +39,17 @@ export default function ProductDialog({
       dialogRef.current?.close();
     }
 
+    if (isEditing && product) {
+      setName(product.name);
+      setBrand(product.brand);
+      setPrice(product.price ? product.price.toString() : "");
+      setDescription(product.description);
+      setImage(product.image);
+      setCategory(product.category);
+    }
+
   }, [openDialog]);
+
 
   const onSubmit = handleSubmit(async (data) => {
 
@@ -54,6 +66,11 @@ export default function ProductDialog({
 
 
         await updateProduct(product._id || "", form);
+
+        update!({
+          ...form,
+          _id: product._id
+        });
 
         setName("");
         setBrand("");
@@ -87,6 +104,8 @@ export default function ProductDialog({
       setPrice("");
       setDescription("");
       setImage("");
+      setCategory("");
+
       closeDialog();
       navigate("/admin");
     } catch (error) {

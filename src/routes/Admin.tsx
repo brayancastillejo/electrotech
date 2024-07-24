@@ -8,16 +8,18 @@ export default function Admin() {
   const [showDialog, setShowDialog] = useState<boolean>(false);
   const [products, setProducts] = useState<displayProductDTO[]>([]);
 
+  const fetchProducts = async () => {
+    const response = await getProducts();
+    setProducts(response);
+  };
+
+  const updateProductInList = (updatedProduct: displayProductDTO) => {
+    setProducts(products.map(product => product._id === updatedProduct._id ? updatedProduct : product));
+  };
+
   useEffect(() => {
-    
-    const fetchProducts = async () => {
-      const response = await getProducts();
-      setProducts(response);
-    };
-
     fetchProducts();
-
-  },[products]);
+  },[]);
 
   return (
     <section className="flex w-full max-w-3xl flex-col items-end gap-4 p-4">
@@ -33,7 +35,7 @@ export default function Admin() {
       {
         products.map((product:displayProductDTO) => {
           return (
-            <ProductRecord key={product._id} product={product}/>
+            <ProductRecord key={product._id} product={product} update={updateProductInList}/>
           );
         })
       }
