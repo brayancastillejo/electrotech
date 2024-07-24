@@ -1,6 +1,5 @@
 import axios from "axios";
 import { productDTO } from "../interfaces/productDTO";
-import { updateProductDTO } from "../interfaces/updateProductDTO";
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
@@ -20,7 +19,7 @@ export const createProduct = async (product: productDTO) => {
   return response.data;
 };
 
-export const updateProduct = async (id: string, product: updateProductDTO) => {
+export const updateProduct = async (id: string, product: productDTO) => {
   const response = await instance.put(`/products/${id}`, product, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,

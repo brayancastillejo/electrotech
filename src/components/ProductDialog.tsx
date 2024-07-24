@@ -3,13 +3,13 @@ import { useForm } from "react-hook-form";
 import { productDTO } from "../interfaces/productDTO";
 import { createProduct, updateProduct } from "../api/product";
 import { useNavigate } from "react-router-dom";
-import { updateProductDTO } from "../interfaces/updateProductDTO";
+import { displayProductDTO } from "../interfaces/displayProductDTO";
 
 interface ProductDialogProps {
   openDialog: boolean;
   closeDialog: () => void;
   isEditing: boolean;
-  product?: updateProductDTO;
+  product?: displayProductDTO;
 }
 
 export default function ProductDialog({
@@ -23,6 +23,7 @@ export default function ProductDialog({
   const [price, setPrice] = useState<string>(isEditing && product ? product.price ? product.price.toString() : '' : "");
   const [description, setDescription] = useState<string>(isEditing && product ? product.description || '' : "");
   const [image, setImage] = useState<string>(isEditing && product ? product.image || '' : "");
+  const [category, setCategory] = useState<string>(isEditing && product ? product.category || '' : "");
 
   const { register, handleSubmit } = useForm();
 
@@ -36,26 +37,19 @@ export default function ProductDialog({
       dialogRef.current?.close();
     }
 
-    if (isEditing && product) {
-      setName(product.name || '');
-      setBrand(product.brand || '');
-      setPrice(product.price ? product.price.toString() : '');
-      setDescription(product.description || '');
-      setImage(product.image || '');
-    }
-
   }, [openDialog]);
 
   const onSubmit = handleSubmit(async (data) => {
 
     if (isEditing && product) {
       try {
-        const form: updateProductDTO = {
+        const form: productDTO = {
           name: data.name,
           brand: data.brand,
           price: parseInt(data.price),
           description: data.description,
           image: data.image,
+          category: data.category
         };
 
 
@@ -66,6 +60,8 @@ export default function ProductDialog({
         setPrice("");
         setDescription("");
         setImage("");
+        setCategory("");
+
         closeDialog();
         navigate("/admin");
         
@@ -82,6 +78,7 @@ export default function ProductDialog({
         price: parseInt(data.price),
         description: data.description,
         image: data.image,
+        category: data.category,
       };
 
       await createProduct(form);
@@ -157,6 +154,21 @@ export default function ProductDialog({
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="category">Category: </label>
+          <select
+            id="category"
+            className="rounded-md bg-neutral-300 px-2 py-1"
+            {...register("category", { required: true })}
+            onChange={(e) => setCategory(e.target.value)} 
+            value={category} 
+          >
+            <option value="phones">Phones</option>
+            <option value="computers">Computers</option>
+            <option value="home">Home</option>
+            <option value="videogames">Videogames</option>
+          </select>
         </div>
         <div className="flex flex-col">
           <label htmlFor="image">Image URL: </label>
