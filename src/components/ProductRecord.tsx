@@ -1,13 +1,34 @@
+import { useState } from "react";
+import { displayProductDTO } from "../interfaces/displayProductDTO";
 import DeleteIcon from "./icons/DeleteIcon";
 import EditIcon from "./icons/EditIcon";
+import ProductDialog from "./ProductDialog";
 
-export default function ProductRecord() {
+interface ProductRecordProps {
+  product: displayProductDTO;
+}
+
+export default function ProductRecord({ product }: ProductRecordProps) {
+  const [showDialog, setShowDialog] = useState<boolean>(false);
+
+  const toggleDialog = () => {
+    setShowDialog(true);
+  }
+
   return (
     <div className="flex w-full items-center gap-4 bg-neutral-300 p-4">
-      <div className="size-8 rounded-full bg-orange-800"></div>
-      <p className="mr-auto">Product</p>
-      <EditIcon />
-      <DeleteIcon color="red" />
+      <img className="size-8 rounded-full bg-neutral-700" src={product.image} alt={product.name}/>
+      <p className="mr-auto">{product.name}</p>
+      <EditIcon onClick={toggleDialog}/>
+      <ProductDialog
+        openDialog={showDialog}
+        closeDialog={() => {
+          setShowDialog(false);
+        }}
+        isEditing={true}
+        product={product}
+      />
+      <DeleteIcon color="red" productId={product._id}/>
     </div>
   );
 }

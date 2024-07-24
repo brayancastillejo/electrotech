@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductDialog from "../components/ProductDialog";
 import ProductRecord from "../components/ProductRecord";
+import { displayProductDTO } from "../interfaces/displayProductDTO";
+import { getProducts } from "../api/product";
 
 export default function Admin() {
   const [showDialog, setShowDialog] = useState<boolean>(false);
+  const [products, setProducts] = useState<displayProductDTO[]>([]);
+
+  useEffect(() => {
+    
+    const fetchProducts = async () => {
+      const response = await getProducts();
+      setProducts(response);
+    };
+
+    fetchProducts();
+
+  },[products]);
 
   return (
     <section className="flex w-full max-w-3xl flex-col items-end gap-4 p-4">
@@ -15,12 +29,20 @@ export default function Admin() {
       >
         Create product
       </button>
-      <ProductRecord />
+
+      {
+        products.map((product:displayProductDTO) => {
+          return (
+            <ProductRecord key={product._id} product={product}/>
+          );
+        })
+      }
       <ProductDialog
         openDialog={showDialog}
         closeDialog={() => {
           setShowDialog(false);
         }}
+        isEditing={false}
       />
     </section>
   );

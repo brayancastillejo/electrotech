@@ -1,23 +1,28 @@
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { productDTO } from "../interfaces/productDTO";
-import { createProduct } from "../api/product";
+import { createProduct, updateProduct } from "../api/product";
 import { useNavigate } from "react-router-dom";
+import { updateProductDTO } from "../interfaces/updateProductDTO";
 
 interface ProductDialogProps {
   openDialog: boolean;
   closeDialog: () => void;
+  isEditing: boolean;
+  product?: updateProductDTO;
 }
 
 export default function ProductDialog({
   openDialog,
   closeDialog,
+  isEditing,
+  product,
 }: ProductDialogProps) {
-  const [name, setName] = useState<string>("");
-  const [brand, setBrand] = useState<string>("");
-  const [price, setPrice] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [image, setImage] = useState<string>("");
+  const [name, setName] = useState<string>(isEditing && product ? product.name || '' : "");
+  const [brand, setBrand] = useState<string>(isEditing && product ? product.brand || '' : "");
+  const [price, setPrice] = useState<string>(isEditing && product ? product.price ? product.price.toString() : '' : "");
+  const [description, setDescription] = useState<string>(isEditing && product ? product.description || '' : "");
+  const [image, setImage] = useState<string>(isEditing && product ? product.image || '' : "");
 
   const { register, handleSubmit } = useForm();
 
@@ -30,9 +35,46 @@ export default function ProductDialog({
     } else {
       dialogRef.current?.close();
     }
+
+    if (isEditing && product) {
+      setName(product.name || '');
+      setBrand(product.brand || '');
+      setPrice(product.price ? product.price.toString() : '');
+      setDescription(product.description || '');
+      setImage(product.image || '');
+    }
+
   }, [openDialog]);
 
   const onSubmit = handleSubmit(async (data) => {
+
+    if (isEditing && product) {
+      try {
+        const form: updateProductDTO = {
+          name: data.name,
+          brand: data.brand,
+          price: parseInt(data.price),
+          description: data.description,
+          image: data.image,
+        };
+
+
+        await updateProduct(product._id || "", form);
+
+        setName("");
+        setBrand("");
+        setPrice("");
+        setDescription("");
+        setImage("");
+        closeDialog();
+        navigate("/admin");
+        
+      } catch (error) {
+        console.log(error);
+      }
+      return;
+    }
+
     try {
       const form: productDTO = {
         name: data.name,
@@ -53,6 +95,7 @@ export default function ProductDialog({
     } catch (error) {
       console.log(error);
     }
+
   });
 
   return (
@@ -62,7 +105,7 @@ export default function ProductDialog({
     >
       <form
         action=""
-        method="post"
+        method={isEditing ? "put" : "post"}
         onSubmit={onSubmit}
         className="flex flex-col gap-4"
       >
@@ -129,6 +172,7 @@ export default function ProductDialog({
         </div>
         <div className="mt-6 flex gap-4">
           <button
+            type="button"
             onClick={closeDialog}
             className="bg-danger flex-1 rounded-md px-2 py-1 text-white"
           >
@@ -138,7 +182,7 @@ export default function ProductDialog({
             type="submit"
             className="flex-1 rounded-md bg-primary px-2 py-1 text-white"
           >
-            Create
+            {isEditing ? "Update" : "Create"}
           </button>
         </div>
       </form>
