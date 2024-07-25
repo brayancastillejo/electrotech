@@ -8,6 +8,7 @@ import Login from "./components/Login.tsx";
 import Register from "./components/Register.tsx";
 import "./index.css";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute.tsx";
+import FormBackground from "./components/FormBackground.tsx";
 
 const router = createBrowserRouter([
   {
@@ -39,11 +40,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <FormBackground>
+        <Login />
+      </FormBackground>
+    ),
   },
   {
     path: "/register",
-    element: <Register />,
+    element: (
+      <FormBackground>
+        <Register />
+      </FormBackground>
+    ),
   },
 ]);
 

@@ -20,12 +20,24 @@ export default function ProductDialog({
   product,
   update,
 }: ProductDialogProps) {
-  const [name, setName] = useState<string>(isEditing && product ? product.name || '' : "");
-  const [brand, setBrand] = useState<string>(isEditing && product ? product.brand || '' : "");
-  const [price, setPrice] = useState<string>(isEditing && product ? product.price ? product.price.toString() : '' : "");
-  const [description, setDescription] = useState<string>(isEditing && product ? product.description || '' : "");
-  const [image, setImage] = useState<string>(isEditing && product ? product.image || '' : "");
-  const [category, setCategory] = useState<string>(isEditing && product ? product.category || '' : "");
+  const [name, setName] = useState<string>(
+    isEditing && product ? product.name || "" : "",
+  );
+  const [brand, setBrand] = useState<string>(
+    isEditing && product ? product.brand || "" : "",
+  );
+  const [price, setPrice] = useState<string>(
+    isEditing && product ? (product.price ? product.price.toString() : "") : "",
+  );
+  const [description, setDescription] = useState<string>(
+    isEditing && product ? product.description || "" : "",
+  );
+  const [image, setImage] = useState<string>(
+    isEditing && product ? product.image || "" : "",
+  );
+  const [category, setCategory] = useState<string>(
+    isEditing && product ? product.category || "" : "",
+  );
 
   const { register, handleSubmit } = useForm();
 
@@ -47,12 +59,9 @@ export default function ProductDialog({
       setImage(product.image);
       setCategory(product.category);
     }
-
-  }, [openDialog]);
-
+  }, [openDialog, isEditing, product]);
 
   const onSubmit = handleSubmit(async (data) => {
-
     if (isEditing && product) {
       try {
         const form: productDTO = {
@@ -61,15 +70,14 @@ export default function ProductDialog({
           price: parseInt(data.price),
           description: data.description,
           image: data.image,
-          category: data.category
+          category: data.category,
         };
-
 
         await updateProduct(product._id || "", form);
 
         update!({
           ...form,
-          _id: product._id
+          _id: product._id,
         });
 
         setName("");
@@ -81,7 +89,6 @@ export default function ProductDialog({
 
         closeDialog();
         navigate("/admin");
-        
       } catch (error) {
         console.log(error);
       }
@@ -111,7 +118,6 @@ export default function ProductDialog({
     } catch (error) {
       console.log(error);
     }
-
   });
 
   return (
@@ -180,8 +186,8 @@ export default function ProductDialog({
             id="category"
             className="rounded-md bg-neutral-300 px-2 py-1"
             {...register("category", { required: true })}
-            onChange={(e) => setCategory(e.target.value)} 
-            value={category} 
+            onChange={(e) => setCategory(e.target.value)}
+            value={category}
           >
             <option value="phones">Phones</option>
             <option value="computers">Computers</option>
@@ -205,7 +211,7 @@ export default function ProductDialog({
           <button
             type="button"
             onClick={closeDialog}
-            className="bg-danger flex-1 rounded-md px-2 py-1 text-white"
+            className="flex-1 rounded-md bg-danger px-2 py-1 text-white"
           >
             Cancel
           </button>

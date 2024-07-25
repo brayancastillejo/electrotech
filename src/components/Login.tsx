@@ -63,7 +63,7 @@ export default function Login() {
       onSubmit={onSubmit}
       action=""
       method="post"
-      className="flex flex-col gap-4 rounded-lg bg-neutral-200 p-4"
+      className="flex w-fit flex-col gap-4 rounded-lg bg-neutral-200 p-4"
     >
       <div className="flex flex-col">
         <label htmlFor="email">Email: </label>

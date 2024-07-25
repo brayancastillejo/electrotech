@@ -9,6 +9,9 @@ export default {
         danger: "#f00",
         "darker-danger": "#a00",
       },
+      backgroundImage: {
+        "form-background": "url(/src/assets/images/light-background.png)",
+      },
     },
   },
   plugins: [],
