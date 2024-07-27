@@ -9,6 +9,7 @@ import Register from "./components/Register.tsx";
 import "./index.css";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute.tsx";
 import FormBackground from "./components/FormBackground.tsx";
+import Index from "./routes/Index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
+      { index: true, element: <Index /> },
       {
         path: "/phones",
         element: <h1>Phones</h1>,

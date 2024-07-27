@@ -14,12 +14,16 @@ export default function Admin() {
   };
 
   const updateProductInList = (updatedProduct: displayProductDTO) => {
-    setProducts(products.map(product => product._id === updatedProduct._id ? updatedProduct : product));
+    setProducts(
+      products.map((product) =>
+        product._id === updatedProduct._id ? updatedProduct : product,
+      ),
+    );
   };
 
   useEffect(() => {
     fetchProducts();
-  },[]);
+  }, []);
 
   return (
     <section className="flex w-full max-w-3xl flex-col items-end gap-4 p-4">
@@ -32,13 +36,15 @@ export default function Admin() {
         Create product
       </button>
 
-      {
-        products.map((product:displayProductDTO) => {
-          return (
-            <ProductRecord key={product._id} product={product} update={updateProductInList}/>
-          );
-        })
-      }
+      {products.map((product: displayProductDTO) => {
+        return (
+          <ProductRecord
+            key={product._id}
+            product={product}
+            update={updateProductInList}
+          />
+        );
+      })}
       <ProductDialog
         openDialog={showDialog}
         closeDialog={() => {
