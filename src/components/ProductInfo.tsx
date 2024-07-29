@@ -1,3 +1,4 @@
+import { cartItems } from "../constants/cartItems";
 import { displayProductDTO } from "../interfaces/displayProductDTO";
 import CloseIcon from "./icons/CloseIcon";
 
@@ -29,7 +30,14 @@ export default function ProductInfo({
       <h2 className="text-2xl font-bold">{product?.name}</h2>
       <p>{product?.description}</p>
       <p>{`$${product?.price}`}</p>
-      <button className="mt-auto rounded-md bg-primary px-2 py-1 text-white">
+      <button
+        onClick={() => {
+          if (product) {
+            cartItems.push(product);
+          }
+        }}
+        className="mt-auto rounded-md bg-primary px-2 py-1 text-white"
+      >
         Add to cart
       </button>
     </aside>

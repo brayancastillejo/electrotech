@@ -10,6 +10,7 @@ import "./index.css";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute.tsx";
 import FormBackground from "./components/FormBackground.tsx";
 import Index from "./routes/Index.tsx";
+import Cart from "./routes/Cart.tsx";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/admin",
         element: <ProtectedRoute component={Admin} requiredRole="admin" />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
