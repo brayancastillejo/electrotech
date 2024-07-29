@@ -33,7 +33,10 @@ export default function Navbar({ display, setDisplay }: NavbarProps) {
     <nav
       className={`absolute left-0 top-0 min-h-screen min-w-72 bg-white p-4 text-black md:static md:mr-auto md:min-h-fit md:w-auto md:bg-transparent md:p-0 md:text-current ${display ? "block" : "hidden md:block"}`}
     >
-      <CloseIcon style={"absolute right-4"} setDisplay={setDisplay} />
+      <CloseIcon
+        style={"absolute right-4 md:hidden"}
+        onClick={() => setDisplay(false)}
+      />
       <ElectrotechLogo style="md:hidden mb-8 text-lg" />
       <ul className="flex flex-col gap-4 md:flex-row md:gap-2">
         {isLoaded &&

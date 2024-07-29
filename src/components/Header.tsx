@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import ElectrotechLogo from "./logos/ElectrotechLogo";
 import { useState } from "react";
 import UserPopover from "./UserPopover";
+import CartIcon from "./icons/CartIcon";
 
 export default function Header() {
   const [display, setDisplay] = useState<boolean>(false);
@@ -16,6 +17,7 @@ export default function Header() {
       <ElectrotechLogo style="mr-auto" />
       <Navbar display={display} setDisplay={setDisplay} />
       <SearchIcon />
+      <CartIcon />
       <UserIcon display={displayPopover} setDisplay={setDisplayPopover} />
       <UserPopover display={displayPopover} />
     </header>
