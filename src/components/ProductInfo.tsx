@@ -1,6 +1,7 @@
-import { cartItems } from "../constants/cartItems";
+import { useContext } from "react";
 import { displayProductDTO } from "../interfaces/displayProductDTO";
 import CloseIcon from "./icons/CloseIcon";
+import { CartItemsContext } from "../context/CartItemsContext";
 
 interface ProductInfoProps {
   product: displayProductDTO | null;
@@ -13,9 +14,11 @@ export default function ProductInfo({
   display,
   setDisplay,
 }: ProductInfoProps) {
+  const context = useContext(CartItemsContext);
+
   return (
     <aside
-      className={`xs:max-w-sm absolute right-0 top-0 h-screen w-full flex-col gap-4 bg-white p-4 ${display ? "flex" : "hidden"}`}
+      className={`absolute right-0 top-0 h-screen w-full flex-col gap-4 bg-white p-4 xs:max-w-sm ${display ? "flex" : "hidden"}`}
     >
       <CloseIcon
         style="absolute top-5 right-5 bg-neutral-200 rounded-full"
@@ -33,7 +36,10 @@ export default function ProductInfo({
       <button
         onClick={() => {
           if (product) {
-            cartItems.push(product);
+            context?.setCartItems([
+              ...context.cartItems,
+              { ...product, _id: product._id + context.cartItems.length },
+            ]);
           }
         }}
         className="mt-auto rounded-md bg-primary px-2 py-1 text-white"

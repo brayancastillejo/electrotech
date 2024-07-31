@@ -11,6 +11,7 @@ import { ProtectedRoute } from "./components/auth/ProtectedRoute.tsx";
 import FormBackground from "./components/FormBackground.tsx";
 import Index from "./routes/Index.tsx";
 import Cart from "./routes/Cart.tsx";
+import CartItemsContextProvider from "./context/CartItemsContext.tsx";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CartItemsContextProvider>
+      <RouterProvider router={router} />
+    </CartItemsContextProvider>
   </React.StrictMode>,
 );
