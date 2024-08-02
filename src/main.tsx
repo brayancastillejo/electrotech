@@ -12,6 +12,7 @@ import FormBackground from "./components/FormBackground.tsx";
 import Index from "./routes/Index.tsx";
 import Cart from "./routes/Cart.tsx";
 import CartItemsContextProvider from "./context/CartItemsContext.tsx";
+import Products from "./components/Products.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,19 +23,19 @@ const router = createBrowserRouter([
       { index: true, element: <Index /> },
       {
         path: "/phones",
-        element: <h1>Phones</h1>,
+        element: <Products category="phones" />,
       },
       {
         path: "/computers",
-        element: <h1>Computers</h1>,
+        element: <Products category="computers" />,
       },
       {
         path: "/home",
-        element: <h1>Home</h1>,
+        element: <Products category="home" />,
       },
       {
         path: "/videogames",
-        element: <h1>Videogames</h1>,
+        element: <Products category="videogames" />,
       },
       {
         path: "/admin",
