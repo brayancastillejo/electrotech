@@ -123,7 +123,7 @@ export default function ProductDialog({
   return (
     <dialog
       ref={dialogRef}
-      className="w-96 rounded-lg border border-neutral-400 bg-neutral-200 p-4"
+      className="w-96 rounded-lg border border-neutral-400 bg-neutral-200 p-4 backdrop:bg-black/50"
     >
       <form
         action=""

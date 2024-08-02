@@ -18,10 +18,9 @@ export default function CartItem({ product }: CartItemProps) {
         className="size-8 rounded-full"
       />
       <p>{product.name}</p>
-      <p>{product.brand}</p>
-      <p>{product.category}</p>
-      <p>{product._id}</p>
-      <div className="ml-auto flex gap-8">
+      <p className="hidden md:block">{product.brand}</p>
+      <p className="hidden md:block">{product.category}</p>
+      <div className="ml-auto flex gap-4 md:gap-8">
         <p>{`$${product.price}`}</p>
         <CloseIcon
           onClick={() =>
