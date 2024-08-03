@@ -11,11 +11,11 @@ export default function CartItem({ product }: CartItemProps) {
   const context = useContext(CartItemsContext);
 
   return (
-    <article className="flex items-center gap-4 bg-neutral-300 p-4">
+    <article className="flex items-center gap-4 bg-neutral-300 p-4 dark:bg-neutral-700 dark:text-white">
       <img
         src={product.image}
         alt={product.name}
-        className="size-8 rounded-full"
+        className="size-8 rounded-full object-cover"
       />
       <p>{product.name}</p>
       <p className="hidden md:block">{product.brand}</p>

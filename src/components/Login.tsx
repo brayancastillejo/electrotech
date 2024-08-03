@@ -63,7 +63,7 @@ export default function Login() {
       onSubmit={onSubmit}
       action=""
       method="post"
-      className="flex w-fit flex-col gap-4 rounded-lg bg-neutral-200 p-4"
+      className="flex w-fit flex-col gap-4 rounded-lg bg-neutral-200 p-4 dark:bg-neutral-800 dark:text-white"
     >
       <div className="flex flex-col">
         <label htmlFor="email">Email: </label>
@@ -71,7 +71,7 @@ export default function Login() {
           type="email"
           id="email"
           placeholder="daniel@gmail.com"
-          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80"
+          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80 dark:bg-neutral-700"
           {...register("email", { required: true })}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -83,7 +83,7 @@ export default function Login() {
           type="password"
           id="password"
           placeholder="••••••••"
-          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80"
+          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80 dark:bg-neutral-700"
           {...register("password", { required: true })}
           value={password}
           onChange={(e) => setPassword(e.target.value)}

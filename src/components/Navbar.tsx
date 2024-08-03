@@ -31,7 +31,7 @@ export default function Navbar({ display, setDisplay }: NavbarProps) {
 
   return (
     <nav
-      className={`absolute left-0 top-0 min-h-screen min-w-72 bg-white p-4 text-black md:static md:mr-auto md:min-h-fit md:w-auto md:bg-transparent md:p-0 md:text-current ${display ? "block" : "hidden md:block"}`}
+      className={`absolute left-0 top-0 min-h-screen min-w-72 bg-white p-4 text-black md:static md:mr-auto md:min-h-fit md:w-auto md:bg-transparent md:p-0 md:text-current dark:bg-neutral-800 dark:text-white dark:md:bg-transparent ${display ? "block" : "hidden md:block"}`}
     >
       <CloseIcon
         style={"absolute right-4 md:hidden"}
@@ -45,7 +45,7 @@ export default function Navbar({ display, setDisplay }: NavbarProps) {
               <NavLink
                 to={`/${item}`}
                 className={({ isActive }) =>
-                  `rounded-md px-2 py-1 ${isActive ? "bg-neutral-200 md:bg-darker-primary" : ""}`
+                  `rounded-md px-2 py-1 ${isActive ? "bg-neutral-200 md:bg-darker-primary dark:bg-neutral-700 dark:md:bg-darker-primary" : ""}`
                 }
               >
                 {item[0].toUpperCase() + item.slice(1)}

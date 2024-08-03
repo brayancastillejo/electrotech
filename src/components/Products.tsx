@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getProducts } from "../api/product";
 import { displayProductDTO } from "../interfaces/displayProductDTO";
 import ProductCard from "./ProductCard";
+import ProductInfo from "./ProductInfo";
 
 interface ProductsProps {
   category: string;
@@ -9,6 +10,9 @@ interface ProductsProps {
 
 export default function Products({ category }: ProductsProps) {
   const [products, setProducts] = useState<displayProductDTO[]>([]);
+  const [selectedProduct, setSelectedProduct] =
+    useState<displayProductDTO | null>(null);
+  const [displayProductInfo, setDisplayProductInfo] = useState<boolean>(false);
 
   async function fetchProducts() {
     const response = await getProducts();
@@ -27,9 +31,17 @@ export default function Products({ category }: ProductsProps) {
           <ProductCard
             key={product._id}
             product={product}
-            onClick={() => console.log("Product clicked")}
+            onClick={(product) => {
+              setSelectedProduct(product);
+              setDisplayProductInfo(true);
+            }}
           />
         ))}
+      <ProductInfo
+        product={selectedProduct}
+        display={displayProductInfo}
+        setDisplay={() => setDisplayProductInfo(false)}
+      />
     </section>
   );
 }

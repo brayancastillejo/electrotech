@@ -57,7 +57,7 @@ export default function Register() {
     <form
       action=""
       method="post"
-      className="flex flex-col gap-4 rounded-lg bg-neutral-200 p-4"
+      className="flex flex-col gap-4 rounded-lg bg-neutral-200 p-4 dark:bg-neutral-800 dark:text-white"
       onSubmit={onSubmit}
     >
       <div className="flex flex-col">
@@ -66,7 +66,7 @@ export default function Register() {
           type="text"
           id="name"
           placeholder="Daniel Smith"
-          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80"
+          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80 dark:bg-neutral-700"
           {...register("name", { required: true })}
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -78,7 +78,7 @@ export default function Register() {
           type="email"
           id="email"
           placeholder="daniel@gmail.com"
-          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80"
+          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80 dark:bg-neutral-700"
           {...register("email", { required: true })}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -90,7 +90,7 @@ export default function Register() {
           type="password"
           id="password"
           placeholder="••••••••"
-          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80"
+          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80 dark:bg-neutral-700"
           {...register("password", {
             required: true,
             minLength: {
@@ -108,7 +108,7 @@ export default function Register() {
           type="password"
           id="confirm-password"
           placeholder="••••••••"
-          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80"
+          className="w-64 rounded-md bg-neutral-300 px-2 py-1 md:w-80 dark:bg-neutral-700"
           {...register("confirmpassword", { required: true })}
         />
       </div>

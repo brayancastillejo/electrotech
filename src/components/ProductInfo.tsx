@@ -22,10 +22,10 @@ export default function ProductInfo({
     <>
       <div className={`fixed inset-0 z-40 bg-black bg-opacity-50`} />
       <aside
-        className={`fixed right-0 top-0 z-50 flex h-screen w-full flex-col gap-4 bg-white p-4 xs:max-w-sm`}
+        className={`fixed right-0 top-0 z-50 flex h-screen w-full flex-col gap-4 bg-white p-4 xs:max-w-sm dark:bg-neutral-800 dark:text-white`}
       >
         <CloseIcon
-          style="absolute top-5 right-5 bg-neutral-200 rounded-full"
+          style="absolute top-5 right-5 bg-neutral-200 dark:bg-neutral-700 rounded-full"
           size={32}
           onClick={setDisplay}
         />

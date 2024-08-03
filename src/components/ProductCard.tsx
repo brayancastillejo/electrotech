@@ -9,7 +9,7 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
   return (
     <article
       onClick={() => onClick(product)}
-      className="w-36 cursor-pointer rounded-md bg-blue-300 p-2 md:w-44"
+      className="w-36 cursor-pointer rounded-md bg-blue-300 p-2 text-primary md:w-44"
     >
       <img
         src={product.image}

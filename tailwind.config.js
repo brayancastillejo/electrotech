@@ -11,9 +11,11 @@ export default {
         "darker-primary": "#034796",
         danger: "#f00",
         "darker-danger": "#a00",
+        "dark-primary": "#09f",
       },
       backgroundImage: {
         "form-background": "url(/src/assets/images/light-background.png)",
+        "dark-form-background": "url(/src/assets/images/dark-background.png)",
       },
     },
   },

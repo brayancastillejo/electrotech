@@ -14,13 +14,17 @@ export default function ProductRecord({ product, update }: ProductRecordProps) {
 
   const toggleDialog = () => {
     setShowDialog(true);
-  }
+  };
 
   return (
-    <div className="flex w-full items-center gap-4 bg-neutral-300 p-4">
-      <img className="size-8 rounded-full bg-neutral-700" src={product.image} alt={product.name}/>
+    <div className="flex w-full items-center gap-4 bg-neutral-300 p-4 dark:bg-neutral-700 dark:text-white">
+      <img
+        className="size-8 rounded-full bg-neutral-700 object-cover"
+        src={product.image}
+        alt={product.name}
+      />
       <p className="mr-auto">{product.name}</p>
-      <EditIcon onClick={toggleDialog}/>
+      <EditIcon onClick={toggleDialog} />
       <ProductDialog
         openDialog={showDialog}
         closeDialog={() => {
@@ -30,7 +34,7 @@ export default function ProductRecord({ product, update }: ProductRecordProps) {
         product={product}
         update={update}
       />
-      <DeleteIcon color="red" productId={product._id}/>
+      <DeleteIcon color="red" productId={product._id} />
     </div>
   );
 }

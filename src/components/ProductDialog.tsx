@@ -123,7 +123,7 @@ export default function ProductDialog({
   return (
     <dialog
       ref={dialogRef}
-      className="w-96 rounded-lg border border-neutral-400 bg-neutral-200 p-4 backdrop:bg-black/50"
+      className="w-96 rounded-lg bg-neutral-200 p-4 backdrop:bg-black/50 dark:bg-neutral-800 dark:text-white"
     >
       <form
         action=""
@@ -137,7 +137,7 @@ export default function ProductDialog({
             type="text"
             id="name"
             placeholder="iPhone 15 Pro"
-            className="rounded-md bg-neutral-300 px-2 py-1"
+            className="rounded-md bg-neutral-300 px-2 py-1 dark:bg-neutral-700"
             {...register("name", { required: true })}
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -149,7 +149,7 @@ export default function ProductDialog({
             type="text"
             id="brand"
             placeholder="Apple"
-            className="rounded-md bg-neutral-300 px-2 py-1"
+            className="rounded-md bg-neutral-300 px-2 py-1 dark:bg-neutral-700"
             {...register("brand", { required: true })}
             value={brand}
             onChange={(e) => setBrand(e.target.value)}
@@ -161,7 +161,7 @@ export default function ProductDialog({
             type="text"
             id="price"
             placeholder="999"
-            className="rounded-md bg-neutral-300 px-2 py-1"
+            className="rounded-md bg-neutral-300 px-2 py-1 dark:bg-neutral-700"
             {...register("price", { required: true })}
             value={price}
             onChange={(e) => setPrice(e.target.value)}
@@ -174,7 +174,7 @@ export default function ProductDialog({
             placeholder="Our most powerful cameras yet. Ultrafast chips. And USB-C."
             rows={3}
             cols={30}
-            className="rounded-md bg-neutral-300 px-2 py-1"
+            className="rounded-md bg-neutral-300 px-2 py-1 dark:bg-neutral-700"
             {...register("description", { required: true })}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -184,7 +184,7 @@ export default function ProductDialog({
           <label htmlFor="category">Category: </label>
           <select
             id="category"
-            className="rounded-md bg-neutral-300 px-2 py-1"
+            className="rounded-md bg-neutral-300 px-2 py-1 dark:bg-neutral-700"
             {...register("category", { required: true })}
             onChange={(e) => setCategory(e.target.value)}
             value={category}
@@ -201,7 +201,7 @@ export default function ProductDialog({
             type="text"
             id="image"
             placeholder="https://iphone-15-pro-image.png"
-            className="rounded-md bg-neutral-300 px-2 py-1"
+            className="rounded-md bg-neutral-300 px-2 py-1 dark:bg-neutral-700"
             {...register("image", { required: true })}
             value={image}
             onChange={(e) => setImage(e.target.value)}
