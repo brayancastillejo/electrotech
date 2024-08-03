@@ -13,6 +13,7 @@ import Index from "./routes/Index.tsx";
 import Cart from "./routes/Cart.tsx";
 import CartItemsContextProvider from "./context/CartItemsContext.tsx";
 import Products from "./components/Products.tsx";
+import Search from "./routes/Search.tsx";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +44,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <ProtectedRoute component={Cart} requiredRole={["user","admin"]} />,
+        element: (
+          <ProtectedRoute component={Cart} requiredRole={["user", "admin"]} />
+        ),
+      },
+      {
+        path: "/search",
+        element: <Search />,
       },
     ],
   },

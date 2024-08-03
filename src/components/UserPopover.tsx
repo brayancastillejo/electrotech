@@ -7,7 +7,6 @@ interface UserPopoverProps {
 }
 
 export default function UserPopover({ display }: UserPopoverProps) {
-
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -17,7 +16,7 @@ export default function UserPopover({ display }: UserPopoverProps) {
   const logout = () => {
     setIsAuthenticated(false);
     removeToken();
-  }
+  };
 
   return (
     <div
@@ -25,16 +24,16 @@ export default function UserPopover({ display }: UserPopoverProps) {
     >
       {isAuthenticated ? (
         <>
-          <Link to="/" className="text-danger cursor-pointer" onClick={logout}>Logout</Link>
+          <Link to="/" className="cursor-pointer text-danger" onClick={logout}>
+            Logout
+          </Link>
         </>
-      )
-      :(
+      ) : (
         <>
           <Link to="/login">Login</Link>
           <Link to="/register">Register</Link>
         </>
       )}
-     
     </div>
   );
 }

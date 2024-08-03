@@ -18,7 +18,7 @@ export default function ProductCarousel({
   onClick,
 }: ProductCarouselProps) {
   return (
-    <section className="dark:text-dark-primary flex w-full flex-col items-center p-4 text-primary">
+    <section className="flex w-full flex-col items-center p-4 text-primary dark:text-dark-primary">
       <h2 className="text-center text-2xl font-bold md:text-3xl">
         {info.title}
       </h2>

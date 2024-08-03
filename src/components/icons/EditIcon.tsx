@@ -3,7 +3,10 @@ interface EditIconProps {
   onClick: () => void;
 }
 
-export default function EditIcon({ color = "currentColor" , onClick }: EditIconProps) {
+export default function EditIcon({
+  color = "currentColor",
+  onClick,
+}: EditIconProps) {
   return (
     <>
       <svg

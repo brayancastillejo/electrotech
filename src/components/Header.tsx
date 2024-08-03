@@ -18,7 +18,11 @@ export default function Header() {
       <HamburgerIcon setDisplay={setDisplay} />
       <ElectrotechLogo style="mr-auto" />
       <Navbar display={display} setDisplay={setDisplay} />
-      <SearchIcon />
+      <SearchIcon
+        onClick={() => {
+          navigate("/search");
+        }}
+      />
       <CartIcon
         onClick={() => {
           navigate("/cart");

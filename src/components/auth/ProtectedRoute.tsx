@@ -31,5 +31,9 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     return <Navigate to="/login" />;
   }
 
-  return requiredRole.includes(userRole) ? <Component /> : <Navigate to="/login" />;
+  return requiredRole.includes(userRole) ? (
+    <Component />
+  ) : (
+    <Navigate to="/login" />
+  );
 };

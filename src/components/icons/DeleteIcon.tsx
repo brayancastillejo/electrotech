@@ -5,7 +5,10 @@ interface DeleteIconProps {
   productId: string;
 }
 
-export default function DeleteIcon({ color = "currentColor", productId }: DeleteIconProps) {
+export default function DeleteIcon({
+  color = "currentColor",
+  productId,
+}: DeleteIconProps) {
   return (
     <>
       <svg

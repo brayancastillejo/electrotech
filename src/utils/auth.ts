@@ -11,7 +11,7 @@ export const getToken = () => {
 
 export const removeToken = () => {
   localStorage.removeItem("token");
-}
+};
 
 const isValidToken = async () => {
   const data = await validateToken();
