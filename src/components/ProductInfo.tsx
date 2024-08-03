@@ -15,10 +15,9 @@ export default function ProductInfo({
   setDisplay,
 }: ProductInfoProps) {
   const context = useContext(CartItemsContext);
+  const [message, setMessage] = useState("Add to cart");
 
   if (!display) return null;
-
-  const [message, setMessage] = useState("Add to cart");
 
   return (
     <>
