@@ -4,7 +4,7 @@ import { getRole } from "../../utils/auth";
 
 type ProtectedRouteProps = RouteProps & {
   component: React.ComponentType;
-  requiredRole: string;
+  requiredRole: string[];
 };
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
@@ -31,5 +31,5 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     return <Navigate to="/login" />;
   }
 
-  return userRole === requiredRole ? <Component /> : <Navigate to="/login" />;
+  return requiredRole.includes(userRole) ? <Component /> : <Navigate to="/login" />;
 };

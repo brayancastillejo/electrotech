@@ -39,11 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin",
-        element: <ProtectedRoute component={Admin} requiredRole="admin" />,
+        element: <ProtectedRoute component={Admin} requiredRole={["admin"]} />,
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: <ProtectedRoute component={Cart} requiredRole={["user","admin"]} />,
       },
     ],
   },

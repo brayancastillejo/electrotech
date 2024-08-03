@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { displayProductDTO } from "../interfaces/displayProductDTO";
 import CloseIcon from "./icons/CloseIcon";
 import { CartItemsContext } from "../context/CartItemsContext";
@@ -17,6 +17,8 @@ export default function ProductInfo({
   const context = useContext(CartItemsContext);
 
   if (!display) return null;
+
+  const [message, setMessage] = useState("Add to cart");
 
   return (
     <>
@@ -44,11 +46,13 @@ export default function ProductInfo({
                 ...context.cartItems,
                 { ...product, _id: product._id + crypto.randomUUID() },
               ]);
+              setMessage("Product added to cart");
+              setTimeout(() => setMessage("Add to cart"), 1000);
             }
           }}
           className="mt-auto rounded-md bg-primary px-2 py-1 text-white"
         >
-          Add to cart
+          {message}
         </button>
       </aside>
     </>
