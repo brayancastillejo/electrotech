@@ -9,6 +9,10 @@ export const getToken = () => {
   return localStorage.getItem("token");
 };
 
+export const removeToken = () => {
+  localStorage.removeItem("token");
+}
+
 const isValidToken = async () => {
   const data = await validateToken();
   return data.isValid;
