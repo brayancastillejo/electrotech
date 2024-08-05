@@ -1,5 +1,5 @@
 export const phoneCarousel = {
-  title: "Find the Best Smartphones",
+  title: "Find the Best Phones",
   text: "in Electrotech.",
 };
 

@@ -6,7 +6,6 @@ import ErrorPage from "./ErrorPage.tsx";
 import Admin from "./routes/Admin.tsx";
 import Login from "./components/Login.tsx";
 import Register from "./components/Register.tsx";
-import "./index.css";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute.tsx";
 import FormBackground from "./components/FormBackground.tsx";
 import Index from "./routes/Index.tsx";
@@ -14,6 +13,8 @@ import Cart from "./routes/Cart.tsx";
 import CartItemsContextProvider from "./context/CartItemsContext.tsx";
 import Products from "./components/Products.tsx";
 import Search from "./routes/Search.tsx";
+import "@fontsource-variable/inter";
+import "./index.css";
 
 const router = createBrowserRouter([
   {
