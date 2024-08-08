@@ -16,6 +16,7 @@ export default function ProductInfo({
 }: ProductInfoProps) {
   const context = useContext(CartItemsContext);
   const [message, setMessage] = useState("Add to cart");
+  const [buttonColor, setButtonColor] = useState("bg-primary");
 
   if (!display) return null;
 
@@ -23,7 +24,7 @@ export default function ProductInfo({
     <>
       <div className={`fixed inset-0 z-40 bg-black bg-opacity-50`} />
       <aside
-        className={`fixed right-0 top-0 z-50 flex h-screen w-full flex-col gap-4 bg-white p-4 text-black xs:max-w-sm dark:bg-neutral-800 dark:text-white`}
+        className={`fixed right-0 top-0 z-50 flex h-dvh w-full flex-col gap-4 bg-white p-4 text-black xs:max-w-sm dark:bg-neutral-800 dark:text-white`}
       >
         <CloseIcon
           style="absolute top-5 right-5 bg-neutral-200 dark:bg-neutral-700 rounded-full"
@@ -46,10 +47,14 @@ export default function ProductInfo({
                 { ...product, _id: product._id + crypto.randomUUID() },
               ]);
               setMessage("Product added to cart");
-              setTimeout(() => setMessage("Add to cart"), 1000);
+              setButtonColor("bg-darker-primary");
+              setTimeout(() => {
+                setMessage("Add to cart");
+                setButtonColor("bg-primary");
+              }, 1000);
             }
           }}
-          className="mt-auto rounded-md bg-primary px-2 py-1 text-white"
+          className={`mt-auto rounded-md ${buttonColor} px-2 py-1 text-white`}
         >
           {message}
         </button>

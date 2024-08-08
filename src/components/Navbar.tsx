@@ -31,7 +31,7 @@ export default function Navbar({ display, setDisplay }: NavbarProps) {
 
   return (
     <nav
-      className={`absolute left-0 top-0 min-h-screen min-w-72 bg-white p-4 text-black md:static md:mr-auto md:min-h-fit md:w-auto md:bg-transparent md:p-0 md:text-current dark:bg-neutral-800 dark:text-white dark:md:bg-transparent ${display ? "block" : "hidden md:block"}`}
+      className={`fixed left-0 top-0 z-10 min-h-screen min-w-72 bg-white p-4 text-black md:static md:mr-auto md:min-h-fit md:w-auto md:bg-transparent md:p-0 md:text-current dark:bg-neutral-800 dark:text-white dark:md:bg-transparent ${display ? "block" : "hidden md:block"}`}
     >
       <CloseIcon
         style={"absolute right-4 md:hidden"}
