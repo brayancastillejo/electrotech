@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { registerDTO } from "../interfaces/registerDTO";
 import { signup } from "../api/auth";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   // router-dom
@@ -112,6 +113,9 @@ export default function Register() {
           {...register("confirmpassword", { required: true })}
         />
       </div>
+      <Link to="/login" className="text-xs text-primary underline">
+        Login
+      </Link>
 
       {errors.password && typeof errors.password.message === "string" && (
         <span className="text-center text-sm text-red-500">
@@ -127,7 +131,7 @@ export default function Register() {
 
       <button
         type="submit"
-        className="mt-6 w-64 rounded-md bg-primary px-2 py-1 text-white md:w-80"
+        className="w-64 rounded-md bg-primary px-2 py-1 text-white md:w-80"
       >
         Register
       </button>

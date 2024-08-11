@@ -4,6 +4,7 @@ import { useState } from "react";
 import { loginDTO } from "../interfaces/loginDTO";
 import { useNavigate } from "react-router-dom";
 import { getRole } from "../utils/auth";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   // router-dom
@@ -89,6 +90,9 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
+      <Link to="/register" className="text-xs text-primary underline">
+        register
+      </Link>
 
       {error && (
         <div>
@@ -98,7 +102,7 @@ export default function Login() {
 
       <button
         type="submit"
-        className="mt-6 w-64 rounded-md bg-primary px-2 py-1 text-white md:w-80"
+        className="w-64 rounded-md bg-primary px-2 py-1 text-white md:w-80"
       >
         Login
       </button>
